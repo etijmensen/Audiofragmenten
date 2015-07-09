@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+<!-- Versie      Datum        Omschrijving                                                                           -->
+<!--  0.7         ????????    Initiele versie                                                                        -->
+<!--  1.0         16052014 	  Versie overzicht toegevoegd en AanvullendAdvies toegevoegd                             -->
+<!--  1.1         16052014 	  Geen excuses in fase 3                                                                 -->
+<!--  1.2         16052014    Schrappen GEO gebieden (PI 021/QC10425)                                                -->
+<!--  1.3         13062014    PI-009 Gegevens uit stamtabellen                                                       -->
+<!--  1.4         09042015    Verwijderen van dringend advies uit het omroepbericht door dit niet in het             -->
+<!--                          hoofd/combi stramien op te nemen.                                                      -->
+<!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+<piOmroepStramienConfiguratie ingangsMoment="2001-12-17T09:30:47Z" versie="1.3" xmlns="urn:ns:cdm:reisinformatie:i+:publicatieconfiguratie:1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:ns:cdm:reisinformatie:i+:publicatieconfiguratie:1 PUB-PI-AO-Configuratie-v1.3.xsd">
+	<hoofdStramien naam="Ernstige Verstoring">
+		<tekst>
+			<aanhef audio="DAENHE">Dames en heren,</aanhef>
+			<body>
+				<ref deel="TRAJECTEN-GEOGRAFIE"/>
+                <deel audio="ANO"><v>oorzaak</v></deel>
+				<ref deel="INFRABEPERKINGEN-MET-GEVOLGEN"/>
+				<ref deel="ALTERNATIEF-VERVOER"/>
+				<ref deel="VERTRAGING"/>
+                <deel audio="TNP"><v>prognoseOmschrijving</v></deel>
+                <deel audio="PI_KAL"><v>prognoseTijd</v>.</deel>
+				<ref deel="AANVULLEND-ADVIES"/>
+                <ref deel="OMREIS-ADVIES"/>
+			</body>
+			<herhaling herhaald="false"/>
+		</tekst>
+		<afgifteConditie naam="PI-BEPERKINGEN">
+			<combi>false</combi>
+			<verstoringsFase>[1-3]</verstoringsFase>
+		</afgifteConditie>
+	</hoofdStramien>
+	<hoofdStramien naam="Ernstige Verstoring (beperkingen voorbij)">
+		<tekst>
+			<aanhef audio="DAENHE">Dames en heren,</aanhef>
+			<body>
+				<ref deel="TRAJECTEN-GEOGRAFIE"/>
+				<ref deel="INFRABEPERKINGEN-BEPERKINGEN-VOORBIJ"/>
+                <ref deel="ALTERNATIEF-VERVOER"/>
+				<deel audio="TNP"><v>prognoseOmschrijving</v></deel>
+				<deel audio="PI_KAL"><v>prognoseTijd</v>.</deel>
+                <ref deel="VERTRAGING"/>
+                <ref deel="AANVULLEND-ADVIES"/>
+				<ref deel="OMREIS-ADVIES"/>
+			</body>
+			<herhaling herhaald="false"/>
+		</tekst>
+		<afgifteConditie naam="PI-BEPERKINGEN-VOORBIJ">
+			<combi>false</combi>
+			<verstoringsFase>4</verstoringsFase>
+		</afgifteConditie>
+	</hoofdStramien>
+	<hoofdStramien naam="Vrije Tekst">
+		<tekst>
+			<aanhef audio="DAENHE">Dames en heren,</aanhef>
+			<body>
+				<ref deel="VRIJE-TEKST" />
+			</body>
+			<herhaling herhaald="false" />
+		</tekst>
+		<afgifteConditie naam="VTS-BEPERKINGEN">
+			<bericht>VTS</bericht>
+		</afgifteConditie>
+	</hoofdStramien>
+	<combiStramien naam="Combi - Ernstige Verstoring">
+		<tekst>
+			<ref deel="INFRABEPERKINGEN-MET-GEVOLGEN"/>
+			<deel audio="ANO"><v>oorzaak</v>.</deel>
+			<ref deel="ALTERNATIEF-VERVOER"/>
+			<ref deel="VERTRAGING"/>
+			<deel audio="TNP"><v>prognoseOmschrijving</v></deel>
+			<deel audio="PI_KAL"><v>prognoseTijd</v>.</deel>
+			<ref deel="OMREIS-ADVIES"/>
+		</tekst>
+		<afgifteConditie naam="PI-COMBI-BEPERKINGEN">
+			<combi>true</combi>
+			<verstoringsFase>[1-3]</verstoringsFase>
+		</afgifteConditie>
+	</combiStramien>
+	<combiStramien naam="Combi - Ernstige Verstoring (beperkingen voorbij)">
+		<tekst>
+			<ref deel="INFRABEPERKINGEN-BEPERKINGEN-VOORBIJ"/>
+			<deel audio="TNP"><v>prognoseOmschrijving</v></deel>
+			<deel audio="PI_KAL"><v>prognoseTijd</v>.</deel>
+			<ref deel="OMREIS-ADVIES"/>
+		</tekst>
+		<afgifteConditie naam="PI-COMBI-BEPERKINGEN-VOORBIJ">
+			<combi>true</combi>
+			<verstoringsFase>4</verstoringsFase>
+		</afgifteConditie>
+	</combiStramien>
+	<deelStramien naam="VRIJE-TEKST">
+		<tekst>
+			<deel><v>vrijeTekst</v>.</deel>
+		</tekst>
+	</deelStramien>
+	<deelStramien naam="EXCUSES">
+		<tekst>
+			<deel audio="EXCUSES">Onze excuses hiervoor.</deel>
+		</tekst>
+		<afgifteConditie naam="PI-GEEN-TREINEN-GEEN-OMREIS-ADVIES">
+			<verstoringsFase>[1-2]</verstoringsFase>
+			<geenTreinen>true</geenTreinen>
+			<omreisAdvies>false</omreisAdvies>
+		</afgifteConditie>
+	</deelStramien>
+	<deelStramien naam="VERTRAGING">
+		<tekst>
+			<ref deel="VERTRAGING-MATE-DUUR"/>
+			<ref deel="VERTRAGING-MATE"/>
+		</tekst>
+		<afgifteConditie naam="PI-VERTRAGING">
+			<verstoringsFase>[1-4]</verstoringsFase>
+			<vertraging>true</vertraging>
+		</afgifteConditie>
+	</deelStramien>
+	<deelStramien naam="VERTRAGING-MATE-DUUR">
+		<tekst>
+			<deel audio="VTK"><v>vertragingMate</v></deel>
+			<deel audio="VTW"><v>vertragingDuur</v>.</deel>
+		</tekst>
+		<afgifteConditie naam="PI-VERTRAGING-FASE1-TOT-3-ONBEKEND-OMREISADVIES">
+			<verstoringsFase>1B|2|3</verstoringsFase>
+			<vertraging>true</vertraging>
+			<omreisAdvies>false</omreisAdvies>
+		</afgifteConditie>
+	</deelStramien>
+	<deelStramien naam="VERTRAGING-MATE">
+		<tekst>
+			<deel audio="VTK"><v>vertragingMate</v>.</deel>
+		</tekst>
+		<afgifteConditie naam="PI-VERTRAGING-FASE4">
+			<verstoringsFase>4</verstoringsFase>
+			<vertraging>true</vertraging>
+		</afgifteConditie>
+	</deelStramien>
+	<deelStramien naam="TRAJECTEN-GEOGRAFIE">
+		<tekst>
+			<deel audio="BRRZ">dit is een bericht voor reizigers</deel>
+			<deel audio="STAT"><v>trajectStationGeografie</v>.</deel>
+		</tekst>
+		<afgifteConditie naam="PI-TRAJECTEN-GEOGRAFIE">
+			<trajectGeografie>true</trajectGeografie>
+		</afgifteConditie>
+	</deelStramien>
+	<deelStramien naam="INFRABEPERKINGEN-MET-GEVOLGEN">
+		<tekst>
+			<ref deel="INFRABEPERKING-MET-GEVOLGEN"/>
+			<deel>.</deel>
+		</tekst>
+	</deelStramien>
+	<deelStramien naam="INFRABEPERKING-MET-GEVOLGEN" type="infraBeperking">
+		<tekst>
+            <deel audio="GTD"><v>infraBeperkingGevolgenTreindienst</v></deel>
+			<deel audio="STAT"><v>infraBeperkingStationGeografie</v></deel>
+			<conjunctie audio="EN">en</conjunctie>
+		</tekst>
+		<afgifteConditie naam="PI-GEVOLGEN-TREINDIENST">
+			<gevolgenTreindienst>true</gevolgenTreindienst>
+		</afgifteConditie>
+	</deelStramien>
+	<deelStramien naam="INFRABEPERKINGEN-BEPERKINGEN-VOORBIJ">
+		<tekst>
+			<ref deel="INFRABEPERKING-BEPERKINGEN-VOORBIJ"/>
+            <deel audio="GTD"><v>infraBeperkingGevolgenTreindienst</v>.</deel>
+		</tekst>
+		<afgifteConditie naam="PI-INFRABEPERKING-GEVOLGEN-TREINDIENST">
+			<infrabeperkingGevolgenTreindienst>true</infrabeperkingGevolgenTreindienst>
+		</afgifteConditie>
+	</deelStramien>
+	<deelStramien naam="INFRABEPERKING-BEPERKINGEN-VOORBIJ" type="infraBeperking">
+		<tekst>
+			<deel audio="STAT"><v>infraBeperkingStationGeografie</v></deel>
+			<conjunctie audio="EN">en</conjunctie>
+		</tekst>
+		<conditie ref="PI-GEVOLGEN-TREINDIENST"/>
+	</deelStramien>
+	<deelStramien naam="ALTERNATIEF-VERVOER">
+		<tekst>
+			<ref deel="AVV-MAATREGEL"/>
+			<ref deel="AVV-SAMENVATTING"/>
+		</tekst>
+		<afgifteConditie naam="PI-ALTERNATIEF-VERVOER">
+			<alternatiefVervoer>true</alternatiefVervoer>
+		</afgifteConditie>
+	</deelStramien>
+	<deelStramien naam="AVV-MAATREGEL" type="avvMaatregel">
+		<tekst>
+			<deel audio="AVK"><v>avvMaatregelOmschrijving</v></deel>
+			<deel audio="STAT"><v>avvMaatregelStopGeografie</v>.</deel>
+			<ref deel="AVV-MAATREGEL-OPSTAPPLAATS"/>
+		</tekst>
+	</deelStramien>
+	<deelStramien naam="AVV-MAATREGEL-OPSTAPPLAATS" type="avvMaatregel">
+		<tekst>
+			<deel audio="VTV">Deze vertrekken</deel>
+			<deel audio="PI_SP"><v>avvMaatregelOpstapplaats</v>.</deel>
+		</tekst>
+		<afgifteConditie naam="PI-AVV-MAATREGEL-OPSTAPPLAATS">
+			<avvOpstapPlaats>true</avvOpstapPlaats>
+		</afgifteConditie>
+	</deelStramien>
+	<deelStramien naam="AVV-SAMENVATTING">
+		<tekst>
+			<deel audio="AVK"><v>avvSamenvatting</v>.</deel>
+		</tekst>
+		<afgifteConditie naam="PI-GEEN-AVV-MAATREGELEN">
+			<avvMaatregelen>false</avvMaatregelen>
+		</afgifteConditie>
+	</deelStramien>
+	<deelStramien naam="AANVULLEND-ADVIES">
+		<tekst>
+			<deel><v>AanvullendAdviesLang</v>.</deel>
+		</tekst>
+		<afgifteConditie naam="PI-AANVULLEND-ADVIES">
+			<aanvullendAdvies>true</aanvullendAdvies>
+		</afgifteConditie>
+	</deelStramien>
+	<deelStramien naam="DRINGEND-ADVIES">
+		<tekst>
+			<deel><v>dringendAdviesOmschrijving</v>.</deel>
+		</tekst>
+		<afgifteConditie naam="PI-DRINGEND-ADVIES">
+			<dringendAdvies>true</dringendAdvies>
+		</afgifteConditie>
+	</deelStramien>
+	<deelStramien naam="OMREIS-ADVIES" type="omreisAdvies">
+		<tekst>
+			<deel audio="RZ">Reizigers</deel>
+			<deel audio="STAT"><v>omreisAdviesBestemmingen</v></deel>
+			<deel audio="RAK"><v>omreisAdviesOmschrijving</v></deel>
+			<deel audio="STAT"><v>omreisAdviesViaStations</v>.</deel>
+			<ref deel="OMREIS-ADVIES-EXTRA-REISTIJD"/>
+			<ref deel="OMREIS-ADVIES-GEEN-EXTRA-REISTIJD"/>
+		</tekst>
+	</deelStramien>
+	<deelStramien naam="OMREIS-ADVIES-EXTRA-REISTIJD" type="omreisAdvies">
+		<tekst>
+			<deel audio="UBO">U bent ongeveer</deel>
+			<deel audio="VTW"><v>omreisAdviesExtraReistijd</v></deel>
+			<deel audio="LROW">langer onderweg.</deel>
+		</tekst>
+		<afgifteConditie naam="PI-EXTRA-REISTIJD">
+			<extraReistijd>true</extraReistijd>
+		</afgifteConditie>
+	</deelStramien>
+	<deelStramien naam="OMREIS-ADVIES-GEEN-EXTRA-REISTIJD" type="omreisAdvies">
+		<tekst>
+			<deel audio="ELOW">U bent ongeveer even lang onderweg.</deel>
+		</tekst>
+		<afgifteConditie naam="PI-GEEN-EXTRA-REISTIJD">
+			<extraReistijd>false</extraReistijd>
+		</afgifteConditie>
+	</deelStramien>
+	<wachttijden>
+		<wachttijd ondergrens="0" bovengrens="4" audio="+3">enkele minuten</wachttijd>
+		<wachttijd ondergrens="5" bovengrens="7" audio="+5">5 minuten</wachttijd>
+		<wachttijd ondergrens="8" bovengrens="12" audio="+10">10 minuten</wachttijd>
+		<wachttijd ondergrens="13" bovengrens="17" audio="+15">één kwartier</wachttijd>
+		<wachttijd ondergrens="18" bovengrens="22" audio="+20">20 minuten</wachttijd>
+		<wachttijd ondergrens="23" bovengrens="27" audio="+25">25 minuten</wachttijd>
+		<wachttijd ondergrens="28" bovengrens="32" audio="+30">een half uur</wachttijd>
+		<wachttijd ondergrens="33" bovengrens="37" audio="+35">35 minuten</wachttijd>
+		<wachttijd ondergrens="38" bovengrens="42" audio="+40">40 minuten</wachttijd>
+		<wachttijd ondergrens="43" bovengrens="47" audio="+45">drie kwartier</wachttijd>
+		<wachttijd ondergrens="48" bovengrens="52" audio="+50">50 minuten</wachttijd>
+		<wachttijd ondergrens="53" bovengrens="57" audio="+55">55 minuten</wachttijd>
+		<wachttijd ondergrens="58" bovengrens="67" audio="+60">één uur</wachttijd>
+		<wachttijd ondergrens="68" bovengrens="82" audio="+75">vijf kwartier</wachttijd>
+		<wachttijd ondergrens="83" bovengrens="97" audio="+90">anderhalf uur</wachttijd>
+		<wachttijd ondergrens="98" bovengrens="150" audio="+120">twee uur</wachttijd>
+		<wachttijd ondergrens="151" bovengrens="210" audio="+180">drie uur</wachttijd>
+		<wachttijd ondergrens="211" bovengrens="270" audio="+240">vier uur</wachttijd>
+		<wachttijd ondergrens="271" bovengrens="330" audio="+300">vijf uur</wachttijd>
+		<wachttijd ondergrens="331" audio="OT">onbepaalde tijd</wachttijd>
+	</wachttijden>
+</piOmroepStramienConfiguratie>
